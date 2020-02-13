@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robotiq_2f_hande_visualization</name>
+  <version>1.0.0</version>
+  <description> Robotiq Hand E model description package </description>
+  <author email="taku8926@gmail.com">Takuya Kiyokawa</author>
+  <maintainer email="taku8926@gmail.com">Takuya Kiyokawa</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>urdf</depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
