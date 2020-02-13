@@ -57,8 +57,9 @@ from robotiq_2f_gripper_control.msg import _Robotiq2FGripper_robot_input  as inp
 from robotiq_2f_gripper_control.msg import _Robotiq2FGripper_robot_output as outputMsg
 
 
-def mainLoop(device):
-    
+def mainLoop():
+    device = rospy.get_param('~device', '/dev/ttyUSB0')
+
     # Gripper is a 2F with a TCP connection
     gripper = robotiq_2f_gripper_control.baseRobotiq2FGripper.robotiqbaseRobotiq2FGripper()
     gripper.client = robotiq_modbus_rtu.comModbusRtu.communication()
@@ -91,5 +92,5 @@ def mainLoop(device):
             
 if __name__ == '__main__':
     try:
-        mainLoop(sys.argv[1])
+        mainLoop()
     except rospy.ROSInterruptException: pass

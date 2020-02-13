@@ -29,9 +29,12 @@ Implementation of Robotiq Hand-E.
    $ ls -l /dev/ttyUSB0
    $ sudo chmod +777 /dev/ttyUSB0
    $ roscore
-   $ rosrun robotiq_2f_gripper_control Robotiq2FGripperRtuNode.py /dev/ttyUSB0
-   $ rosrun robotiq_2f_gripper_control Robotiq2FGripperSimpleControllerRviz.py
-   $ roslaunch robotiq_2f_hande_visualization test_2f_hande_model.launch 
+
+   $ utils.hande_interactive.sh
+   # $ rosrun robotiq_2f_gripper_control Robotiq2FGripperRtuNode.py _device:=/dev/ttyUSB0
+   # $ rosrun robotiq_2f_gripper_control Robotiq2FGripperSimpleControllerRviz.py
+   # $ roslaunch robotiq_2f_hande_visualization robotiq_2f_hande_model.launch
+
    # << push 'a' to activate
    # adjust the bar to move the fingers
 
