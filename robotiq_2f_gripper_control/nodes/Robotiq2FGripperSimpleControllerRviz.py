@@ -41,10 +41,12 @@ Command-line interface for sending simple commands to a ROS node controlling a 2
 This serves as an example for publishing messages on the 'Robotiq2FGripperRobotOutput' topic using the 'Robotiq2FGripper_robot_output' msg type for sending commands to a 2F gripper.
 """
 
-import roslib; roslib.load_manifest('robotiq_2f_gripper_control')
+import roslib
+roslib.load_manifest('robotiq_2f_gripper_control')
 import rospy
 from robotiq_2f_gripper_control.msg import _Robotiq2FGripper_robot_output as outputMsg
 from time import sleep
+from sensor_msgs.msg import JointState
 
 
 def genCommand(char, command):
@@ -129,17 +131,40 @@ def askForCommand(command):
     return raw_input(strAskForCommand)
 
 
-def publisher():
+def get_2fingers_positions():
+    """Get the Hand E 2 fingers' positions """
+    js = rospy.wait_for_message('/joint_states', JointState)
+    return js.position
+
+
+def simplecontrol():
     """Main loop which requests new commands and publish them on the Robotiq2FGripperRobotOutput topic."""
-    rospy.init_node('Robotiq2FGripperSimpleController')
-    pub = rospy.Publisher('Robotiq2FGripperRobotOutput', outputMsg.Robotiq2FGripper_robot_output, queue_size=10)
+    rospy.init_node('Robotiq2FGripperSimpleControllerRviz')
+    gripper_publisher = rospy.Publisher('Robotiq2FGripperRobotOutput', outputMsg.Robotiq2FGripper_robot_output, queue_size=10)
     command = outputMsg.Robotiq2FGripper_robot_output()
 
-    while not rospy.is_shutdown():
+    # activation
+    while command.rACT == 0:
         command = genCommand(askForCommand(command), command)
-        pub.publish(command)
+        gripper_publisher.publish(command)
         rospy.sleep(0.1)
+
+    # synclonized motion
+    while not rospy.is_shutdown():
+        left_finger, right_finger = get_2fingers_positions()
+        print(left_finger)
+        rospy.sleep(0.2)
+        try: 
+            command.rPR = int(left_finger*255.0/0.025)
+            if command.rPR > 255:
+                command.rPR = 255
+            if command.rPR < 0:
+                command.rPR = 0
+        except ValueError:
+            pass
+        gripper_publisher.publish(command)
+        rospy.sleep(0.2)
                         
 
 if __name__ == '__main__':
-    publisher()
+    simplecontrol()

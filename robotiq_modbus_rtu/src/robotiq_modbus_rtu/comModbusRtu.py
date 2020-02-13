@@ -35,8 +35,6 @@
 #
 # Modifed from the orginal comModbusTcp by Kelsey Hawkins @ Georgia Tech
 
-
-
 """@package docstring
 Module comModbusRtu: defines a class which communicates with Robotiq Grippers using the Modbus RTU protocol. 
 
@@ -45,6 +43,7 @@ The module depends on pymodbus (http://code.google.com/p/pymodbus/) for the Modb
 
 from pymodbus.client.sync import ModbusSerialClient
 from math import ceil
+
 
 class communication:	
 

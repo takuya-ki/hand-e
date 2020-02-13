@@ -9,6 +9,7 @@ import rospy
 from robotiq_2f_gripper_control.msg import Robotiq2FGripper_robot_output as outputMsg
 from robotiq_2f_gripper_control.msg import Robotiq2FGripper_robot_input as inputMsg
 
+
 class RobotiqCGripper(object):
     def __init__(self):
         self.cur_status = None
