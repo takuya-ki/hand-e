@@ -2,6 +2,17 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find robotiq_2f_140_gripper_visualization)/urdf/robotiq_arg2f_transmission.xacro" />
 
+  <!--Dummy link to fix inertia warning-->
+  <link name="dummy"/>
+
+  <joint name="dummy" type="fixed">
+     <origin rpy="0 0 0" xyz="0 0 0"/>
+     <parent link="dummy"/>
+     <child link="robotiq_arg2f_base_link"/>
+     <origin rpy="0  0  0" xyz="0   0   0"/>
+     <axis xyz="0  0  0"/>
+  </joint>
+
   <xacro:macro name="outer_knuckle" params="prefix fingerprefix stroke">
     <link name="${prefix}${fingerprefix}_outer_knuckle">
       <inertial>
