@@ -15,6 +15,7 @@ Implementation of Robotiq Hand-E.
     $ git clone https://github.com/takuya-ki/hand-e.git
     $ cd ..
     $ rosdep install --from-paths src --ignore-src --rosdistro=melodic -y --os=ubuntu:bionic
+    $ sudo apt update && sudo apt install ros-melodic-joint-state-publisher-gui
     $ catkin build
 
 [Important issue](https://github.com/ros-industrial/robotiq/issues/159)
@@ -30,11 +31,7 @@ Implementation of Robotiq Hand-E.
     $ sudo chmod +777 /dev/ttyUSB0
     $ roscore
 
-    $ utils.hande_interactive.sh
-    # $ rosrun robotiq_2f_gripper_control Robotiq2FGripperRtuNode.py _device:=/dev/ttyUSB0
-    # $ rosrun robotiq_2f_gripper_control Robotiq2FGripperSimpleControllerRviz.py
-    roslaunch robotiq_2f_hande_visualization robotiq_2f_hande_model.launch
-
+    $ ./utils/hande_interactive.sh
     # << push 'a' to activate
     # adjust the bar to move the fingers
 
