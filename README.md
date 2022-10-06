@@ -29,9 +29,8 @@ Implementation of Robotiq Hand-E.
     $ sudo usermod -a -G dialout username
     $ ls -l /dev/ttyUSB0
     $ sudo chmod +777 /dev/ttyUSB0
-    $ ./utils/hande_interactive.sh
-    # << push 'a' to activate
-    # adjust the bar to move the fingers
+    $ ./utils/demo.sh
+    $ ./utils/gui.sh
 
 #### TODO: We can use the robotiq_hande_gripper_discription in the robotiq_modular_gripper
 

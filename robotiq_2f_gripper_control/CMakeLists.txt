@@ -18,6 +18,11 @@ add_message_files(
   Robotiq2FGripper_robot_output.msg
 )
 
+add_service_files(
+  FILES
+  SetCommand.srv
+)
+
 catkin_python_setup()
 
 generate_messages()
