@@ -29,8 +29,6 @@ Implementation of Robotiq Hand-E.
     $ sudo usermod -a -G dialout username
     $ ls -l /dev/ttyUSB0
     $ sudo chmod +777 /dev/ttyUSB0
-    $ roscore
-
     $ ./utils/hande_interactive.sh
     # << push 'a' to activate
     # adjust the bar to move the fingers
