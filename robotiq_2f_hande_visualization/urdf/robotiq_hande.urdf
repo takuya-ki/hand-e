@@ -13,7 +13,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/hande_robotiq_hande_base_link.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://robotiq_2f_hande_visualization/meshes/visual/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="">
         <color rgba="0.2 0.2 0.2 1" />
@@ -22,7 +22,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/hande_robotiq_hande_base_link.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -35,7 +35,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/hande_left_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://robotiq_2f_hande_visualization/meshes/visual/left_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="">
         <color rgba="0.8 0.8 0.8 1" />
@@ -44,7 +44,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/hande_left_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/left_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -57,7 +57,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/hande_right_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://robotiq_2f_hande_visualization/meshes/visual/right_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="">
         <color rgba="0.8 0.8 0.8 1" />
@@ -66,7 +66,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/hande_right_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://robotiq_2f_hande_visualization/meshes/collision/right_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
