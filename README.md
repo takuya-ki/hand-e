@@ -32,8 +32,6 @@ Implementation of Robotiq Hand-E.
     $ ./utils/demo.sh
     $ ./utils/gui.sh
 
-#### TODO: We can use the robotiq_hande_gripper_discription in the robotiq_modular_gripper
-
 ## Author
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)
