@@ -7,7 +7,6 @@
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
       <legacyModeNS>true</legacyModeNS> -->
     </plugin>
-
   </gazebo>
 
   <!-- robotiq_hande_model -->
