@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="robotiq_hande" >
   <!-- robotiq_hande_gripper -->
-  <xacro:include filename="$(find robotiq_hande_gripper_description)/urdf/robotiq_hande.urdf.xacro" />
+  <xacro:include filename="$(find robotiq_2f_hande_visualization)/urdf/robotiq_hande.urdf.xacro" />
   <xacro:robotiq_hande prefix="hande_" MAC="_000000000004"/>
 
   <link name="world" />
