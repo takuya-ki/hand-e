@@ -58,7 +58,7 @@ from robotiq_2f_gripper_control.msg import _Robotiq2FGripper_robot_output as out
 
 
 def mainLoop():
-    device = rospy.get_param('~device', '/dev/ttyUSB0')
+    device = rospy.get_param('/device', '/dev/ttyUSB0')
 
     # Gripper is a 2F with a TCP connection
     gripper = robotiq_2f_gripper_control.baseRobotiq2FGripper.robotiqbaseRobotiq2FGripper()
