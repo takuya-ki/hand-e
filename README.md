@@ -1,5 +1,10 @@
 # hand-e
 
+[![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](http://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
+[![License: Apache](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: BSD](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+![repo size](https://img.shields.io/github/repo-size/takuya-ki/hand-e)
+
 ROS metapackage based on [ros-industrial/robotiq](https://github.com/ros-industrial/robotiq).
 
 ## Requirements
