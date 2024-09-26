@@ -10,7 +10,7 @@ byobu split-window -h
 
 byobu send-keys -t 0 'roscore' 'C-m'
 sleep 2.
-byobu send-keys -t 1 'rosparam set /device /dev/ttyUSB1; rosrun robotiq_2f_gripper_control Robotiq2FGripperRtuNode.py' 'C-m'
+byobu send-keys -t 1 'rosparam set /device /dev/ttyUSB0; rosrun robotiq_2f_gripper_control Robotiq2FGripperRtuNode.py' 'C-m'
 sleep 2.
 byobu send-keys -t 2 'rosrun robotiq_2f_gripper_control Robotiq2FGripperSimpleControllerServer.py' 'C-m'
 sleep 2.
