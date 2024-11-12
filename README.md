@@ -14,7 +14,7 @@ ROS meta package based on [ros-industrial/robotiq](https://github.com/ros-indust
 ## Installation
 
 ```bash
-mkdir -p catkin_ws/src && cd catkin_ws && git clone https://github.com/takuya-ki/hand-e.git src && rosdep install --from-paths src --ignore-src --rosdistro=melodic -y --os=ubuntu:bionic && sudo apt update && sudo apt install ros-melodic-joint-state-publisher-gui byobu &&& catkin build && source catkn_ws/devel/setup.bash
+mkdir -p catkin_ws/src && cd catkin_ws && git clone https://github.com/takuya-ki/hand-e.git src && sudo apt update && sudo apt install byobu ros-melodic-joint-state-publisher-gui ros-melodic-soem ros-melodic-socketcan-interface && catkin build && source catkn_ws/devel/setup.bash
 ```
 
 ## Usage
