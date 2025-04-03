@@ -36,8 +36,13 @@ RUN apt upgrade -y && apt update -y && apt install -y --no-install-recommends \
     ros-humble-desktop \
     ros-humble-tf2-tools \
     ros-humble-tf-transformations \
+    ros-humble-urdf-sim-tutorial \
+    ros-humble-moveit \
     python3-colcon-common-extensions \
-    && rm -rf /var/lib/apt/lists/*
+    python3-rosdep \
+    && rm -rf /var/lib/apt/lists/* \
+    && rosdep init \
+    && rosdep update
 
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc 
 RUN echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc
@@ -52,5 +57,6 @@ RUN pip3 install pymodbus==3.0.2 pyserial==3.5
 
 # Generate bash commands
 WORKDIR /ros2_ws/
-RUN echo "source /opt/ros/humble/setup.bash && colcon build --symlink-install --executor sequential && source /root/ros2_ws/install/setup.bash" >> ~/.bash_history
-RUN echo "ros2 launch hande_tutorials demo_launch.py" >> ~/.bash_history
+RUN echo "source /opt/ros/humble/setup.bash && colcon build --symlink-install --executor sequential && source /ros2_ws/install/setup.bash" >> ~/.bash_history
+RUN echo "ros2 launch hande_tutorials demo.launch.py" >> ~/.bash_history
+RUN echo "ros2 launch hande_tutorials display.launch.py" >> ~/.bash_history
