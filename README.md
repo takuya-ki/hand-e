@@ -3,45 +3,54 @@
 [![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](http://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
 ![repo size](https://img.shields.io/github/repo-size/takuya-ki/hand-e)
 
-ROS meta package based on [ros-industrial/robotiq](https://github.com/ros-industrial/robotiq).
+ROS2 Humble Hawksbill meta package based on [ros-industrial/robotiq](https://github.com/ros-industrial/robotiq).
 
-## Requirements
+# Dependency (tested as a host machine)
 
-- [Ubuntu 18.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Lenovo&vendor=Dell&vendor=HP&release=18.04+LTS)
-    - [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-    - [Byobu](https://www.byobu.org/)
+- [Ubuntu 22.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=22.04+LTS)
+  - NVIDIA GeForce RTX 3070
+  - NVIDIA Driver 470.256.02
+  - Docker 26.1.1
+  - Docker Compose 2.27.0
+  - NVIDIA Docker 2.13.0
 
 ## Installation
 
 ```bash
-mkdir -p catkin_ws/src && cd catkin_ws && git clone https://github.com/takuya-ki/hand-e.git src && sudo apt update && sudo apt install byobu ros-melodic-joint-state-publisher-gui ros-melodic-soem ros-melodic-socketcan-interface && catkin build && source catkn_ws/devel/setup.bash
+git clone git@github.com:takuya-ki/hand-e.git --recursive --depth 1 && cd hand-e && COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel 
 ```
 
 ## Usage
 
-1. Connect the Hand E with usb cable to the controll computer
-2. Prepare the execution
-```bash
-sudo usermod -a -G dialout username && ls -l /dev/ttyUSB0 && sudo chmod +777 /dev/ttyUSB0
-```
+1. Build and run the docker environment
+   - Create and start docker containers in the initially opened terminal
+        ```bash
+        docker compose up
+        ```
+   - Execute the container in another terminal
+        ```bash
+        xhost + && docker exec -it hande_humble_container bash
+        ```
+2. Build program files with the revised yaml
+    ```bash
+    cd /ros2_ws && colcon build --symlink-install --parallel-workers 1 && source install/setup.bash
+    ```
+3. Run a planning process in the container
+   - Use byobu to easily command several commands  
+        ```bash
+        byobu
+        ```
+        - First command & F2 to create a new window & Second command ...
+        - Ctrl + F6 to close the selected window
+   - Run the hand closing and opening demo  
+        ```bash
+        ros2 launch hande_tutorials demo_launch.py
+        ```
 
-3. Execute a script
+# Contributors
 
-### [Interactive control](https://wiki.ros.org/robotiq/Tutorials/Control%20of%20a%202-Finger%20Gripper%20using%20the%20Modbus%20RTU%20protocol%20%28ros%20kinetic%20and%20newer%20releases%29)
-```bash
-./utils/gui.sh
-```
-
-### A demonstration script
-```bash
-./utils/demo.sh
-```
+We always welcome collaborators!
 
 ## Author / Contributor
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)
-
-## License
-
-This software is released under the MIT License, see [LICENSE](./LICENSE).
-
