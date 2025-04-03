@@ -3,9 +3,9 @@
 [![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](http://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
 ![repo size](https://img.shields.io/github/repo-size/takuya-ki/hand-e)
 
-ROS2 Humble Hawksbill meta package based on [ros-industrial/robotiq](https://github.com/ros-industrial/robotiq).
+ROS2 Humble Hawksbill package for Robotq Hand-E gripper.
 
-# Dependency (tested as a host machine)
+## Dependency (tested as a host machine)
 
 - [Ubuntu 22.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=22.04+LTS)
   - NVIDIA GeForce RTX 3070
@@ -47,7 +47,7 @@ git clone git@github.com:takuya-ki/hand-e.git --recursive --depth 1 && cd hand-e
         ros2 launch hande_tutorials demo_launch.py
         ```
 
-# Contributors
+## Contributors
 
 We always welcome collaborators!
 
