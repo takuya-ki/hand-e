@@ -13,7 +13,7 @@ ROS meta package based on [ros-industrial/robotiq](https://github.com/ros-indust
 ## Installation
 
 ```bash
-mkdir -p catkin_ws/src && cd catkin_ws && git clone https://github.com/takuya-ki/hand-e.git src && sudo apt update && sudo apt install byobu ros-noetic-joint-state-publisher-gui ros-noetic-soem ros-noetic-socketcan-interface && catkin build -DPYTHON_EXECUTABLE=/usr/bin/python3 && source catkn_ws/devel/setup.bash
+mkdir -p catkin_ws/src && cd catkin_ws && git clone https://github.com/takuya-ki/hand-e.git -b noetic-devel src && sudo apt update && sudo apt install byobu ros-noetic-joint-state-publisher-gui ros-noetic-soem ros-noetic-socketcan-interface && catkin build -DPYTHON_EXECUTABLE=/usr/bin/python3 && source catkn_ws/devel/setup.bash
 ```
 
 ## Usage
