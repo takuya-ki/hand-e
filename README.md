@@ -7,14 +7,13 @@ ROS meta package based on [ros-industrial/robotiq](https://github.com/ros-indust
 
 ## Requirements
 
-- [Ubuntu 18.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Lenovo&vendor=Dell&vendor=HP&release=18.04+LTS)
-    - [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-    - [Byobu](https://www.byobu.org/)
+- [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu)
+- [Byobu](https://www.byobu.org/)
 
 ## Installation
 
 ```bash
-mkdir -p catkin_ws/src && cd catkin_ws && git clone https://github.com/takuya-ki/hand-e.git src && sudo apt update && sudo apt install byobu ros-melodic-joint-state-publisher-gui ros-melodic-soem ros-melodic-socketcan-interface && catkin build && source catkn_ws/devel/setup.bash
+mkdir -p catkin_ws/src && cd catkin_ws && git clone https://github.com/takuya-ki/hand-e.git src && sudo apt update && sudo apt install byobu ros-noetic-joint-state-publisher-gui ros-noetic-soem ros-noetic-socketcan-interface && catkin build && source catkn_ws/devel/setup.bash
 ```
 
 ## Usage
