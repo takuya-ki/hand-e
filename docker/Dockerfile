@@ -58,5 +58,6 @@ RUN pip3 install pymodbus==3.0.2 pyserial==3.5
 # Generate bash commands
 WORKDIR /ros2_ws/
 RUN echo "source /opt/ros/humble/setup.bash && colcon build --symlink-install --executor sequential && source /ros2_ws/install/setup.bash" >> ~/.bash_history
-RUN echo "ros2 launch hande_tutorials demo.launch.py" >> ~/.bash_history
+RUN echo "ros2 launch hande_tutorials demo.launch.py is_sim:=False" >> ~/.bash_history
+RUN echo "ros2 launch hande_tutorials demo.launch.py is_sim:=True" >> ~/.bash_history
 RUN echo "ros2 launch hande_tutorials display.launch.py" >> ~/.bash_history

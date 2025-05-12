@@ -50,9 +50,13 @@ git clone git@github.com:takuya-ki/hand-e.git --recursive --depth 1 && cd hand-e
           <img src="images/visual.png" height="200">  
         - Robot Collision  
           <img src="images/collision.png" height="200">  
-   - Run the hand closing and opening demo  
+   - Run the hand closing and opening demonstrations in simulations
         ```bash
-        ros2 launch hande_tutorials demo.launch.py
+        ros2 launch hande_tutorials demo.launch.py is_sim:=True
+        ```
+   - Run the hand closing and opening demo in the real world  
+        ```bash
+        ros2 launch hande_tutorials demo.launch.py is_sim:=False
         ```
 
 
