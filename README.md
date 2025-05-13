@@ -8,11 +8,8 @@ ROS2 Humble Hawksbill package for Robotq Hand-E gripper.
 ## Dependency (tested as a host machine)
 
 - [Ubuntu 22.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=22.04+LTS)
-  - NVIDIA GeForce RTX 3070
-  - NVIDIA Driver 470.256.02
   - Docker 26.1.1
   - Docker Compose 2.27.0
-  - NVIDIA Docker 2.13.0
 
 ## Installation
 
