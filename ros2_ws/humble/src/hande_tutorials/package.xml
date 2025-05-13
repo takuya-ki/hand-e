@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
-<package format="2">
+<package format="3">
     <name>hande_tutorials</name>
     <version>0.0.0</version>
     <description>An example of ROS2 humble package with hand-e.</description>
     <maintainer email="taku8926@gmail.com">Takuya Kiyokawa</maintainer>
     <license>BSD</license>
 
+    <!-- Package runtime and build dependencies -->
     <depend>rclpy</depend>
     <depend>std_msgs</depend>
     <depend>std_srvs</depend>

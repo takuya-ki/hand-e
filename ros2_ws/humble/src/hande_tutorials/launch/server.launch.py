@@ -34,9 +34,9 @@ def generate_launch_description():
             arguments=[urdf]),
         Node(
             package='hande_tutorials',
-            executable='demo_closeopen',
+            executable='hande_service',
             parameters=[{'is_sim': LaunchConfiguration('is_sim')}],
-            name='demo_closeopen',
+            name='hande_service',
             output='screen'),
         Node(
             package='rviz2',

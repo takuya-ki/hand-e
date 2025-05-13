@@ -14,7 +14,7 @@ services:
         volumes:
             - /dev:/dev
             - /tmp/.X11-unix:/tmp/.X11-unix:rw
-            - ./ros2_ws/humble/src/hande_tutorials:/ros2_ws/src/hande_tutorials
+            - ./ros2_ws/humble/src:/ros2_ws/src
         deploy:
             resources:
                 reservations:

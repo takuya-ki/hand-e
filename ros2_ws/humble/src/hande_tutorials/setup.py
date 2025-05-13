@@ -37,8 +37,8 @@ setup(
     license='BSD',
     entry_points={
         'console_scripts': [
-            'hande_service = '
-            ' hande_tutorials.hande_service:main',
+            'demo_closeopen = hande_tutorials.demo_closeopen:main',
+            'hande_service = hande_tutorials.hande_service:main',
         ],
     },
     include_package_data=True,
