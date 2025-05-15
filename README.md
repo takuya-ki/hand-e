@@ -39,23 +39,39 @@ git clone git@github.com:takuya-ki/hand-e.git --recursive --depth 1 && cd hand-e
         ```
         - First command & F2 to create a new window & Second command ...
         - Ctrl + F6 to close the selected window
-   - Display the robot's (visual and collision) models
-        ```bash
-        ros2 launch hande_tutorials display.launch.py
-        ```
-        - Robot Visual  
-          <img src="images/visual.png" height="200">  
-        - Robot Collision  
-          <img src="images/collision.png" height="200">  
-   - Run the hand closing and opening demonstrations in simulations
-        ```bash
-        ros2 launch hande_tutorials demo.launch.py is_sim:=True
-        ```
-   - Run the hand closing and opening demo in the real world  
-        ```bash
-        ros2 launch hande_tutorials demo.launch.py is_sim:=False
-        ```
 
+##### Display the robot's (visual and collision) models  
+```bash
+ros2 launch hande_tutorials display.launch.py
+```
+- Robot Visual  
+<img src="images/visual.png" height="200">  
+- Robot Collision  
+<img src="images/collision.png" height="200">  
+
+##### Run the hand closing and opening demonstrations in simulations
+```bash
+ros2 launch hande_tutorials demo.launch.py is_sim:=True
+```
+
+##### Run the hand closing and opening demo in the real world  
+```bash
+ros2 launch hande_tutorials demo.launch.py is_sim:=False
+```
+
+##### Run the server receiving motion commands in simulations
+```bash
+ros2 launch hande_tutorials server.launch.py is_sim:=True
+ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'c'}"
+ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'o'}"
+```
+
+##### Run the server receiving motion commands in the real-world
+```bash
+ros2 launch hande_tutorials server.launch.py is_sim:=False
+ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'c'}"
+ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'o'}"
+```
 
 ## Contributors
 
