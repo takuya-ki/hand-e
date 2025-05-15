@@ -22,9 +22,9 @@ def generate_launch_description():
             default_value='false',
             description='Use simulation clock if true'),
         DeclareLaunchArgument(
-            name='is_sim',
+            name='is_real',
             default_value='false',
-            description='True if running in simulation'),
+            description='True if running in the real world'),
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
@@ -35,7 +35,7 @@ def generate_launch_description():
         Node(
             package='hande_tutorials',
             executable='demo_closeopen',
-            parameters=[{'is_sim': LaunchConfiguration('is_sim')}],
+            parameters=[{'is_real': LaunchConfiguration('is_real')}],
             name='demo_closeopen',
             output='screen'),
         Node(

@@ -60,8 +60,8 @@ WORKDIR /ros2_ws/
 RUN echo "source /opt/ros/humble/setup.bash && colcon build --symlink-install --executor sequential && source /ros2_ws/install/setup.bash" >> ~/.bash_history
 RUN echo "ros2 service call /hande/set_command hande_interfaces/srv/SetCommand \"{command: 'c'}\"" >> ~/.bash_history
 RUN echo "ros2 service call /hande/set_command hande_interfaces/srv/SetCommand \"{command: 'o'}\"" >> ~/.bash_history
-RUN echo "ros2 launch hande_tutorials server.launch.py is_sim:=False" >> ~/.bash_history
-RUN echo "ros2 launch hande_tutorials server.launch.py is_sim:=True" >> ~/.bash_history
-RUN echo "ros2 launch hande_tutorials demo.launch.py is_sim:=False" >> ~/.bash_history
-RUN echo "ros2 launch hande_tutorials demo.launch.py is_sim:=True" >> ~/.bash_history
+RUN echo "ros2 launch hande_tutorials server.launch.py is_real:=False" >> ~/.bash_history
+RUN echo "ros2 launch hande_tutorials server.launch.py is_real:=True" >> ~/.bash_history
+RUN echo "ros2 launch hande_tutorials demo.launch.py is_real:=False" >> ~/.bash_history
+RUN echo "ros2 launch hande_tutorials demo.launch.py is_real:=True" >> ~/.bash_history
 RUN echo "ros2 launch hande_tutorials display.launch.py" >> ~/.bash_history

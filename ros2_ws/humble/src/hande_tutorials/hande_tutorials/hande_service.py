@@ -14,31 +14,31 @@ class HandeServer(Node):
     def __init__(self):
         super().__init__('hande_command_server')
 
-        self.declare_parameter('is_sim', False)
-        self.is_sim = self.get_parameter('is_sim').get_parameter_value().bool_value
+        self.declare_parameter('is_real', False)
+        self.is_real = self.get_parameter('is_real').get_parameter_value().bool_value
         self.pos_val = 0.0
 
-        if not self.is_sim:
+        if self.is_real:
             self.device = "/dev/ttyUSB0"
             self.driver = RobotiqModbusRtuDriver(self.device)
             self.driver.connect()
             self.driver.reset()
             self.driver.activate()
             self.driver.move(pos=int(255.0), speed=64, force=1)
-        else:
-            qos_profile = QoSProfile(depth=10)
-            self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
-            joint_state = JointState()
-            try:
-                # update joint_state
-                now = self.get_clock().now()
-                joint_state.header.stamp = now.to_msg()
-                joint_state.name = ['hande_left_finger_joint']
-                joint_state.position = [0.025]
-                # send the joint state and transform
-                self.joint_pub.publish(joint_state)
-            except KeyboardInterrupt:
-                pass
+
+        qos_profile = QoSProfile(depth=10)
+        self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
+        joint_state = JointState()
+        try:
+            # update joint_state
+            now = self.get_clock().now()
+            joint_state.header.stamp = now.to_msg()
+            joint_state.name = ['hande_left_finger_joint']
+            joint_state.position = [0.025]
+            # send the joint state and transform
+            self.joint_pub.publish(joint_state)
+        except KeyboardInterrupt:
+            pass
 
         self.set_command_srv = self.create_service(
             SetCommand,
@@ -50,49 +50,44 @@ class HandeServer(Node):
         self.get_logger().info(request.command)
         pos_val = self.genCommand(request.command)
 
-        if not self.is_sim:
-            pos_val *= 255.0
-            self.get_logger().info("Current position value: " + str(pos_val))
-            self.driver.move(pos=int(pos_val), speed=64, force=1)
-        else:
-            pos_val *= 0.025
-            self.get_logger().info("Current position value: " + str(pos_val))
-            joint_state = JointState()
-            try:
-                # update joint_state
-                now = self.get_clock().now()
-                joint_state.header.stamp = now.to_msg()
-                joint_state.name = ['hande_left_finger_joint']
-                joint_state.position = [pos_val]
-                # send the joint state and transform
-                self.joint_pub.publish(joint_state)
-            except KeyboardInterrupt:
-                pass
+        if self.is_real:
+            pos_val_real = pos_val * 255.0
+            self.get_logger().info("Current position value (real): " + str(pos_val_real))
+            self.driver.move(pos=int(pos_val_real), speed=64, force=1)
 
-        time.sleep(1)
+        pos_val_sim = pos_val * 0.025
+        self.get_logger().info("Current position value (sim): " + str(pos_val_sim))
+        joint_state = JointState()
+        try:
+            # update joint_state
+            now = self.get_clock().now()
+            joint_state.header.stamp = now.to_msg()
+            joint_state.name = ['hande_left_finger_joint']
+            joint_state.position = [pos_val_sim]
+            # send the joint state and transform
+            self.joint_pub.publish(joint_state)
+        except KeyboardInterrupt:
+            pass
+
         return response
 
     def genCommand(self, command):
         """Updates the command according to the character entered by the user."""    
 
-        # close
-        if command == 'c':
+        if command == 'c':  # close
             self.pos_val = 1.0
-
-        # open
-        if command == 'o':
-            self.pos_val = 0.0   
-
-        # (0-255): go to that position
-        # If the command entered is a int, assign this value to rPRA
-        try: 
-            self.pos_val = int(command)
-            if self.pos_val > 1.0:
-                self.pos_val = 1.0
-            if self.pos_val < 0.0:
-                self.pos_val = 0.0
-        except ValueError:
-            pass
+        elif command == 'o':  # open
+            self.pos_val = 0.0
+        else:
+            # assuming that the command is within the range of 0.0 to 0.1
+            try: 
+                self.pos_val = float(command)
+                if self.pos_val > 1.0:
+                    self.pos_val = 1.0
+                elif self.pos_val < 0.0:
+                    self.pos_val = 0.0
+            except ValueError:
+                pass
 
         return self.pos_val
 

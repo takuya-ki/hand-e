@@ -51,24 +51,24 @@ ros2 launch hande_tutorials display.launch.py
 
 ##### Run the hand closing and opening demonstrations in simulations
 ```bash
-ros2 launch hande_tutorials demo.launch.py is_sim:=True
+ros2 launch hande_tutorials demo.launch.py is_real:=False
 ```
 
 ##### Run the hand closing and opening demo in the real world  
 ```bash
-ros2 launch hande_tutorials demo.launch.py is_sim:=False
+ros2 launch hande_tutorials demo.launch.py is_real:=True
 ```
 
 ##### Run the server receiving motion commands in simulations
 ```bash
-ros2 launch hande_tutorials server.launch.py is_sim:=True
+ros2 launch hande_tutorials server.launch.py is_real:=False
 ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'c'}"
 ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'o'}"
 ```
 
 ##### Run the server receiving motion commands in the real-world
 ```bash
-ros2 launch hande_tutorials server.launch.py is_sim:=False
+ros2 launch hande_tutorials server.launch.py is_real:=True
 ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'c'}"
 ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'o'}"
 ```

@@ -12,41 +12,41 @@ class CloseOpenDemonstrator(Node):
     def __init__(self):
         super().__init__('closeopen_demonstrator')
 
-        self.declare_parameter('is_sim', False)
-        self.is_sim = self.get_parameter('is_sim').get_parameter_value().bool_value
+        self.declare_parameter('is_real', False)
+        self.is_real = self.get_parameter('is_real').get_parameter_value().bool_value
 
-        if not self.is_sim:
+        if self.is_real:
             self.device = "/dev/ttyUSB0"
             self.driver = RobotiqModbusRtuDriver(self.device)
             self.driver.connect()
             self.driver.reset()
             self.driver.activate()
-        else:
-            qos_profile = QoSProfile(depth=10)
-            self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
+
+        qos_profile = QoSProfile(depth=10)
+        self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
 
     def closeopen(self, pos_val):
         """ Excutes a demonstration. """
 
-        if not self.is_sim:
-            pos_val *= 255.0
-            self.get_logger().info("Current position value: " + str(pos_val))
-            self.driver.move(pos=int(pos_val), speed=64, force=1)
-        else:
-            pos_val *= 0.025
-            self.get_logger().info("Current position value: " + str(pos_val))
-            joint_state = JointState()
+        if self.is_real:
+            pos_val_real = pos_val * 255.0
+            self.get_logger().info("Current position value (real): " + str(pos_val_real))
+            self.driver.move(pos=int(pos_val_real), speed=64, force=1)
 
-            try:
-                # update joint_state
-                now = self.get_clock().now()
-                joint_state.header.stamp = now.to_msg()
-                joint_state.name = ['hande_left_finger_joint']
-                joint_state.position = [pos_val]
-                # send the joint state and transform
-                self.joint_pub.publish(joint_state)
-            except KeyboardInterrupt:
-                pass
+        pos_val_sim = pos_val * 0.025
+        self.get_logger().info("Current position value (pos_val): " + str(pos_val_sim))
+        joint_state = JointState()
+
+        try:
+            # update joint_state
+            now = self.get_clock().now()
+            joint_state.header.stamp = now.to_msg()
+            joint_state.name = ['hande_left_finger_joint']
+            joint_state.position = [pos_val_sim]
+            # send the joint state and transform
+            self.joint_pub.publish(joint_state)
+        except KeyboardInterrupt:
+            pass
 
 
 def main(args=None):
