@@ -1,0 +1,22 @@
+<launch>
+  <!-- Declare launch arguments -->
+  <arg name="is_real" default="false" />
+  <arg name="use_sim_time" default="false" />
+
+  <!-- Load robot model into /robot_description -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find hande_tutorials)/urdf/hande.urdf.xacro'" />
+
+  <!-- Set simulation time parameter -->
+  <param name="use_sim_time" value="$(arg use_sim_time)" />
+
+  <!-- Publish transforms from joint states and robot_description -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Launch the hande_service node with is_real parameter -->
+  <node name="hande_service" pkg="hande_tutorials" type="hande_service.py" output="screen">
+    <param name="is_real" value="$(arg is_real)" />
+  </node>
+
+  <!-- Launch RViz with a predefined configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hande_tutorials)/rviz/demo.rviz" />
+</launch>

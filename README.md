@@ -3,44 +3,80 @@
 [![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](http://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
 ![repo size](https://img.shields.io/github/repo-size/takuya-ki/hand-e)
 
-ROS meta package based on [ros-industrial/robotiq](https://github.com/ros-industrial/robotiq).
+ROS Noetic package for Robotiq Hand-E gripper.
 
-## Requirements
+## Dependency (tested as a host machine)
 
-- [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu)
-- [Byobu](https://www.byobu.org/)
+- [Ubuntu 22.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=22.04+LTS)
+  - Docker 26.1.1
+  - Docker Compose 2.27.0
 
 ## Installation
 
 ```bash
-mkdir -p catkin_ws/src && cd catkin_ws && git clone https://github.com/takuya-ki/hand-e.git -b noetic-devel src && sudo apt update && sudo apt install byobu ros-noetic-joint-state-publisher-gui ros-noetic-soem ros-noetic-socketcan-interface && catkin build -DPYTHON_EXECUTABLE=/usr/bin/python3 && source catkn_ws/devel/setup.bash
-```
+git clone git@github.com:takuya-ki/hand-e.git -b noetic-devel --recursive --depth 1 && cd hand-e && COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel 
+```  
+1. Build and run the docker environment  
+   - Create and start docker containers in the initially opened terminal  
+        ```bash  
+        docker compose up  
+        ```  
+   - Execute the container in another terminal  
+        ```bash  
+        xhost + && docker exec -it hande_noetic_container bash  
+        ```  
+        ```bash  
+        sudo usermod -a -G dialout username && ls -l /dev/ttyUSB0 && sudo chmod +777 /dev/ttyUSB0  
+        ```  
+2. Build program files with the revised yaml  
+    ```bash  
+    cd /catkin_ws && cakin build -DPYTHON_EXECUTABLE=/usr/bin/python3 && source devel/setup.bash  
+    ```  
+3. Run a planning process in the container  
+   - Use byobu to easily command several commands  
+        ```bash  
+        byobu  
+        ```  
+        - First command & F2 to create a new window & Second command ...  
+        - Ctrl + F6 to close the selected window  
 
-## Usage
-
-1. Connect the Hand E with usb cable to the controll computer
-2. Prepare the execution
+##### Display the robot's (visual and collision) models  
 ```bash
-sudo usermod -a -G dialout username && ls -l /dev/ttyUSB0 && sudo chmod +777 /dev/ttyUSB0
+roslaunch hande_tutorials display.launch
 ```
+- Robot Visual  
+<img src="images/visual.png" height="200">  
+- Robot Collision  
+<img src="images/collision.png" height="200">  
 
-3. Execute a script
-
-### [Interactive control](https://wiki.ros.org/robotiq/Tutorials/Control%20of%20a%202-Finger%20Gripper%20using%20the%20Modbus%20RTU%20protocol%20%28ros%20kinetic%20and%20newer%20releases%29)
+##### Run the hand closing and opening demonstrations in simulations
 ```bash
-./utils/gui.sh
+roslaunch hande_tutorials demo.launch is_real:=False
 ```
 
-### A demonstration script
+##### Run the hand closing and opening demo in the real world  
 ```bash
-./utils/demo.sh
+roslaunch hande_tutorials demo.launch is_real:=True
 ```
+
+##### Run the server receiving motion commands in simulations
+```bash
+roslaunch hande_tutorials server.launch is_real:=False
+rosservice call /hande/set_command "command: 'o'"
+rosservice call /hande/set_command "command: 'c'"
+```
+
+##### Run the server receiving motion commands in the real-world
+```bash
+roslaunch hande_tutorials server.launch is_real:=True
+rosservice call /hande/set_command "command: 'c'"
+rosservice call /hande/set_command "command: 'o'"
+```
+
+## Contributors
+
+We always welcome collaborators!
 
 ## Author / Contributor
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)
-
-## License
-
-This software is released under the MIT License, see [LICENSE](./LICENSE).
-

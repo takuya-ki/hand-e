@@ -1,0 +1,17 @@
+<launch>
+  <arg name="is_real" default="false" />
+
+  <!-- Robot description -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find hande_tutorials)/urdf/hande.urdf.xacro'" />
+
+  <!-- Robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hande_tutorials)/rviz/demo.rviz" required="true" />
+
+  <!-- closeopen_demo Node -->
+  <node pkg="hande_tutorials" type="demo_closeopen.py" name="closeopen_demo" output="screen">
+    <param name="is_real" value="$(arg is_real)" />
+  </node>
+</launch>

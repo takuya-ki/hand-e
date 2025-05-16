@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hande_interfaces</name>
+  <version>0.0.0</version>
+  <description>Contains service definitions used by the examples.</description>
+  <author email="taku8926@gmail.com">Takuya Kiyokawa</author>
+  <maintainer email="taku8926@gmail.com">Takuya Kiyokawa</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+</package>
