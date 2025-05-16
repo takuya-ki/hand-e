@@ -18,7 +18,7 @@ class CloseOpenDemonstrator:
             self.driver.reset()
             self.driver.activate()
 
-        self.joint_pub = rospy.Publisher('joint_states', JointState, queue_size=10)
+        self.joint_pub = rospy.Publisher('/hande/joint_states', JointState, queue_size=10)
 
         # Toggle and publish every 3 seconds
         self.timer = rospy.Timer(rospy.Duration(3.0), self.toggle_and_publish)

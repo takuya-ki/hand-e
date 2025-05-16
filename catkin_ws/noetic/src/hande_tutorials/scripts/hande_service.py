@@ -21,7 +21,7 @@ class HandeServer:
             self.driver.activate()
             self.driver.move(pos=int(255.0), speed=64, force=1)
 
-        self.joint_pub = rospy.Publisher('joint_states', JointState, queue_size=10)
+        self.joint_pub = rospy.Publisher('/hande/joint_states', JointState, queue_size=10)
 
         joint_state = JointState()
         joint_state.header.stamp = rospy.Time.now()

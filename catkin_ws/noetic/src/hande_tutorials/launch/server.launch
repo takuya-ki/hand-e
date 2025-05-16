@@ -1,3 +1,5 @@
+<?xml version="1.0" ?>
+
 <launch>
   <!-- Declare launch arguments -->
   <arg name="is_real" default="false" />
@@ -10,7 +12,9 @@
   <param name="use_sim_time" value="$(arg use_sim_time)" />
 
   <!-- Publish transforms from joint states and robot_description -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <remap from="/joint_states" to="/hande/joint_states" />
+  </node>
 
   <!-- Launch the hande_service node with is_real parameter -->
   <node name="hande_service" pkg="hande_tutorials" type="hande_service.py" output="screen">
