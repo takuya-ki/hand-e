@@ -1,42 +1,70 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
+from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch.conditions import IfCondition
 
 
 def generate_launch_description():
-    ld = LaunchDescription()
+    # Launch arguments
+    declare_model_arg = DeclareLaunchArgument(
+        name='model',
+        default_value=PathJoinSubstitution([
+            FindPackageShare('hande_tutorials'),
+            'urdf',
+            'hande.urdf.xacro'
+        ]),
+        description='Absolute path to URDF (xacro) file'
+    )
 
-    hande_tutorials_path = FindPackageShare('hande_tutorials')
-    default_model_path = PathJoinSubstitution(['urdf', 'hande.urdf.xacro'])
-    default_rviz_config_path = PathJoinSubstitution([hande_tutorials_path, 'rviz', 'urdf.rviz'])
+    declare_rviz_arg = DeclareLaunchArgument(
+        name='rvizconfig',
+        default_value=PathJoinSubstitution([
+            FindPackageShare('hande_tutorials'),
+            'rviz',
+            'urdf.rviz'
+        ]),
+        description='RViz config file'
+    )
 
-    # These parameters are maintained for backwards compatibility
-    ld.add_action(DeclareLaunchArgument(
+    declare_gui_arg = DeclareLaunchArgument(
         name='gui',
         default_value='true',
-        choices=['true', 'false'],
-        description='Flag to enable joint_state_publisher_gui'
-    ))
-    ld.add_action(DeclareLaunchArgument(
-        name='rvizconfig',
-        default_value=default_rviz_config_path,
-        description='Absolute path to rviz config file'
-    ))
+        description='Use joint_state_publisher_gui'
+    )
 
-    # This parameter has changed its meaning slightly from previous versions
-    ld.add_action(DeclareLaunchArgument(
-        name='model',
-        default_value=default_model_path,
-        description='Path to robot urdf file relative to hande_tutorials package'
-    ))
-    ld.add_action(IncludeLaunchDescription(
-        PathJoinSubstitution([FindPackageShare('urdf_launch'), 'launch', 'display.launch.py']),
-        launch_arguments={
-            'urdf_package': 'hande_tutorials',
-            'urdf_package_path': LaunchConfiguration('model'),
-            'rviz_config': LaunchConfiguration('rvizconfig'),
-            'jsp_gui': LaunchConfiguration('gui')}.items()
-    ))
+    # Load robot_description from xacro
+    robot_description = Command(['xacro ', LaunchConfiguration('model')])
 
-    return ld
+    return LaunchDescription([
+        declare_model_arg,
+        declare_rviz_arg,
+        declare_gui_arg,
+
+        Node(
+            package='joint_state_publisher_gui',
+            executable='joint_state_publisher_gui',
+            name='joint_state_publisher_gui',
+            condition=IfCondition(LaunchConfiguration('gui')),
+            remappings=[('/joint_states', '/hande/joint_states')]
+        ),
+
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            name='robot_state_publisher',
+            parameters=[{
+                'robot_description': robot_description
+            }],
+            remappings=[('/joint_states', '/hande/joint_states')]
+        ),
+
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d', LaunchConfiguration('rvizconfig')],
+            output='screen'
+        ),
+    ])

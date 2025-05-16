@@ -27,7 +27,7 @@ class HandeServer(Node):
             self.driver.move(pos=int(255.0), speed=64, force=1)
 
         qos_profile = QoSProfile(depth=10)
-        self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
+        self.joint_pub = self.create_publisher(JointState, '/hande/joint_states', qos_profile)
         joint_state = JointState()
         try:
             # update joint_state

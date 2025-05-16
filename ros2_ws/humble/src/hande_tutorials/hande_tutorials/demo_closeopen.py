@@ -23,7 +23,7 @@ class CloseOpenDemonstrator(Node):
             self.driver.activate()
 
         qos_profile = QoSProfile(depth=10)
-        self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
+        self.joint_pub = self.create_publisher(JointState, '/hande/joint_states', qos_profile)
 
     def closeopen(self, pos_val):
         """ Excutes a demonstration. """

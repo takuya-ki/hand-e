@@ -31,6 +31,7 @@ def generate_launch_description():
             name='robot_state_publisher',
             output='screen',
             parameters=[{'use_sim_time': use_sim_time, 'robot_description': robot_desc}],
+            remappings=[('/joint_states', '/hande/joint_states')],
             arguments=[urdf]),
         Node(
             package='hande_tutorials',
