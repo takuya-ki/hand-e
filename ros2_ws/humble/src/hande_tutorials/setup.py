@@ -29,7 +29,6 @@ setup(
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD',
         'Programming Language :: Python',
         'Topic :: Software Development',
     ],
