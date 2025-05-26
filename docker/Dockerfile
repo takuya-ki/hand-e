@@ -32,7 +32,7 @@ RUN apt update -y && apt install -y --no-install-recommends \
 RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
-RUN apt upgrade -y && apt update -y && apt install -y --no-install-recommends \
+RUN apt update -y && apt install -y --no-install-recommends \
     ros-humble-desktop \
     ros-humble-tf2-tools \
     ros-humble-tf-transformations \
@@ -64,4 +64,4 @@ RUN echo "ros2 launch hande_tutorials server.launch.py is_real:=False" >> ~/.bas
 RUN echo "ros2 launch hande_tutorials server.launch.py is_real:=True" >> ~/.bash_history
 RUN echo "ros2 launch hande_tutorials demo.launch.py is_real:=False" >> ~/.bash_history
 RUN echo "ros2 launch hande_tutorials demo.launch.py is_real:=True" >> ~/.bash_history
-RUN echo "ros2 launch hande_tutorials display.launch.py" >> ~/.bash_history
+RUN echo "ros2 launch hande_description display.launch.py" >> ~/.bash_history

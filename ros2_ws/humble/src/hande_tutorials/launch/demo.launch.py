@@ -11,7 +11,7 @@ def generate_launch_description():
 
     urdf_file_name = 'urdf/hande.urdf'
     urdf = os.path.join(
-        get_package_share_directory('hande_tutorials'),
+        get_package_share_directory('hande_description'),
         urdf_file_name)
     with open(urdf, 'r') as infp:
         robot_desc = infp.read()

@@ -42,7 +42,7 @@ git clone git@github.com:takuya-ki/hand-e.git --recursive --depth 1 && cd hand-e
 
 ##### Display the robot's (visual and collision) models  
 ```bash
-ros2 launch hande_tutorials display.launch.py
+ros2 launch hande_description display.launch.py
 ```
 - Robot Visual  
 <img src="images/visual.png" height="200">  

@@ -12,7 +12,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-        <mesh filename="package://hande_tutorials/meshes/visual/base_link.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://hande_description/meshes/visual/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="">
         <color rgba="0.2 0.2 0.2 1" />
@@ -21,7 +21,7 @@
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-        <mesh filename="package://hande_tutorials/meshes/collision/base_link.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://hande_description/meshes/collision/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -41,7 +41,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://hande_tutorials/meshes/visual/left_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://hande_description/meshes/visual/left_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="">
         <color rgba="0.8 0.8 0.8 1" />
@@ -50,7 +50,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://hande_tutorials/meshes/collision/left_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://hande_description/meshes/collision/left_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
@@ -64,7 +64,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://hande_tutorials/meshes/visual/right_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://hande_description/meshes/visual/right_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="">
         <color rgba="0.8 0.8 0.8 1" />
@@ -73,7 +73,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://hande_tutorials/meshes/collision/right_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://hande_description/meshes/collision/right_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>

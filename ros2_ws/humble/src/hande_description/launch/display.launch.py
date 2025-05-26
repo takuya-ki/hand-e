@@ -11,7 +11,7 @@ def generate_launch_description():
     declare_model_arg = DeclareLaunchArgument(
         name='model',
         default_value=PathJoinSubstitution([
-            FindPackageShare('hande_tutorials'),
+            FindPackageShare('hande_description'),
             'urdf',
             'hande.urdf.xacro'
         ]),
@@ -21,7 +21,7 @@ def generate_launch_description():
     declare_rviz_arg = DeclareLaunchArgument(
         name='rvizconfig',
         default_value=PathJoinSubstitution([
-            FindPackageShare('hande_tutorials'),
+            FindPackageShare('hande_description'),
             'rviz',
             'urdf.rviz'
         ]),
