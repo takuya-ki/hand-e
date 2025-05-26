@@ -3,7 +3,7 @@
 <launch>
   <arg name="gui" default="True" />
 
-  <param name="robot_description" command="$(find xacro)/xacro $(find hande_tutorials)/urdf/hande.urdf.xacro" />  
+  <param name="robot_description" command="$(find xacro)/xacro $(find hande_description)/urdf/hande.urdf.xacro" />  
   
   <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
     <remap from="/joint_states" to="/hande/joint_states" />
@@ -13,5 +13,5 @@
     <remap from="/joint_states" to="/hande/joint_states" />
   </node>
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hande_tutorials)/rviz/urdf.rviz" required="true" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hande_description)/rviz/urdf.rviz" required="true" />
 </launch>

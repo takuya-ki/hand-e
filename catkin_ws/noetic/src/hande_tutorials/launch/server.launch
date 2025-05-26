@@ -6,7 +6,7 @@
   <arg name="use_sim_time" default="false" />
 
   <!-- Load robot model into /robot_description -->
-  <param name="robot_description" command="$(find xacro)/xacro '$(find hande_tutorials)/urdf/hande.urdf.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro '$(find hande_description)/urdf/hande.urdf.xacro'" />
 
   <!-- Set simulation time parameter -->
   <param name="use_sim_time" value="$(arg use_sim_time)" />

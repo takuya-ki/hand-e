@@ -99,4 +99,4 @@ RUN echo "roslaunch hande_tutorials server.launch is_real:=False" >> ~/.bash_his
 RUN echo "roslaunch hande_tutorials server.launch is_real:=True" >> ~/.bash_history
 RUN echo "roslaunch hande_tutorials demo.launch is_real:=False" >> ~/.bash_history
 RUN echo "roslaunch hande_tutorials demo.launch is_real:=True" >> ~/.bash_history
-RUN echo "roslaunch hande_tutorials display.launch" >> ~/.bash_history
+RUN echo "roslaunch hande_description display.launch" >> ~/.bash_history

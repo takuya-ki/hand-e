@@ -42,7 +42,7 @@ git clone git@github.com:takuya-ki/hand-e.git -b noetic-devel --recursive --dept
 
 ##### Display the robot's (visual and collision) models  
 ```bash
-roslaunch hande_tutorials display.launch
+roslaunch hande_description display.launch
 ```
 - Robot Visual  
 <img src="images/visual.png" height="200">  

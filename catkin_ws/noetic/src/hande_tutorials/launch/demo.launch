@@ -4,7 +4,7 @@
   <arg name="is_real" default="false" />
 
   <!-- Robot description -->
-  <param name="robot_description" command="$(find xacro)/xacro '$(find hande_tutorials)/urdf/hande.urdf.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro '$(find hande_description)/urdf/hande.urdf.xacro'" />
 
   <!-- Robot state publisher -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">

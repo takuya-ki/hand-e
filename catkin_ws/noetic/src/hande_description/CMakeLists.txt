@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(hande_tutorials)
+project(hande_description)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
@@ -11,13 +11,9 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_package()
 
-catkin_install_python(PROGRAMS
-  scripts/demo_closeopen.py
-  scripts/hande_service.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
 install(DIRECTORY
+  urdf
   rviz
+  meshes
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
