@@ -38,6 +38,12 @@ RUN apt update -y && apt install -y --no-install-recommends \
     ros-humble-tf-transformations \
     ros-humble-urdf-sim-tutorial \
     ros-humble-moveit \
+    ros-humble-joint-trajectory-controller \
+    ros-humble-joint-state-broadcaster \
+    ros-humble-ros2controlcli \
+    ros-humble-ros-gz-sim \
+    ros-humble-ros-gz-bridge \
+    ros-humble-ros-gz-image \
     python3-colcon-common-extensions \
     python3-rosdep \
     && rm -rf /var/lib/apt/lists/* \
@@ -65,3 +71,5 @@ RUN echo "ros2 launch hande_tutorials server.launch.py is_real:=True" >> ~/.bash
 RUN echo "ros2 launch hande_tutorials demo.launch.py is_real:=False" >> ~/.bash_history
 RUN echo "ros2 launch hande_tutorials demo.launch.py is_real:=True" >> ~/.bash_history
 RUN echo "ros2 launch hande_description display.launch.py" >> ~/.bash_history
+RUN echo "ros2 launch hande_control control.launch.py" >> ~/.bash_history
+RUN echo "ros2 launch hande_gazebo gazebo.launch.py" >> ~/.bash_history

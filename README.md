@@ -73,6 +73,17 @@ ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 
 ros2 service call /hande/set_command hande_interfaces/srv/SetCommand "{command: 'o'}"
 ```
 
+##### Run the controller
+```bash
+ros2 launch hande_control control.launch.py
+```
+
+##### Run the gazebo simulator
+```bash
+ros2 launch hande_gazebo gazebo.launch.py
+```
+<img src="images/gazebo.png" height="400">  
+
 ## Contributors
 
 We always welcome collaborators!

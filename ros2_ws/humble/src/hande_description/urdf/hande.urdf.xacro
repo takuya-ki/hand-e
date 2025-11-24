@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot name="hande" xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <xacro:arg name="use_gazebo" default="false"/>
+
   <link name="world" />
 
   <link name="base_link">
@@ -94,5 +96,29 @@
     <limit effort="130" lower="0" upper="0.025" velocity="0.15"/>
     <mimic joint="hande_left_finger_joint" multiplier="1" offset="0"/>
   </joint>
+
+  <ros2_control name="HandESystem" type="system">
+    <hardware>
+      <xacro:if value="$(arg use_gazebo)">
+        <plugin>mock_components/GenericSystem</plugin>
+        <param name="mock_sensor_commands">true</param>
+      </xacro:if>
+
+      <xacro:unless value="$(arg use_gazebo)">
+        <plugin>mock_components/GenericSystem</plugin>
+        <param name="mock_sensor_commands">true</param>
+      </xacro:unless>
+    </hardware>
+
+    <joint name="hande_left_finger_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+
+    <joint name="hande_right_finger_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+  </ros2_control>
 
 </robot>
