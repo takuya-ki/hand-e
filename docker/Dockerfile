@@ -74,3 +74,5 @@ RUN echo "ros2 launch hande_tutorials demo.launch.py is_real:=True" >> ~/.bash_h
 RUN echo "ros2 launch hande_description display.launch.py" >> ~/.bash_history
 RUN echo "ros2 launch hande_control control.launch.py" >> ~/.bash_history
 RUN echo "ros2 launch hande_gazebo gazebo.launch.py" >> ~/.bash_history
+RUN echo "ros2 topic pub --once /hande_controller/commands std_msgs/msg/Float64MultiArray '{data: [0.0, 0.0]}'" >> ~/.bash_history
+RUN echo "ros2 topic pub --once /hande_controller/commands std_msgs/msg/Float64MultiArray '{data: [2.5, 2.5]}'" >> ~/.bash_history
