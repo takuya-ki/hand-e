@@ -18,13 +18,19 @@ def generate_launch_description():
 
     hande_description_share = get_package_share_directory("hande_description")
     xacro_file = os.path.join(hande_description_share, "urdf", "hande.urdf.xacro")
-    doc = xacro.process_file(xacro_file, mappings={"use_gazebo": "true"})
-    robot_description = {"robot_description": doc.toxml()}
+    doc = xacro.process_file(
+        xacro_file,
+        mappings={
+            "robot_name": "hande",
+            "mode": "gazebo",
+        },
+    )
+    robot_description_xml = doc.toxml()
+    robot_description = {"robot_description": robot_description_xml}
 
     rsp = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
-        name="hande_robot_state_publisher",
         output="screen",
         parameters=[
             robot_description,
@@ -56,7 +62,7 @@ def generate_launch_description():
     clock_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        arguments=["/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock"],
+        arguments=["/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock]"],
         output="screen",
     )
 
@@ -64,10 +70,31 @@ def generate_launch_description():
         package="ros_gz_sim",
         executable="create",
         arguments=[
-            "-topic", "robot_description",
-            "-name", "hande",
+            "-string", robot_description_xml,
             "-allow_renaming",
             "-z", "0.01",
+        ],
+        output="screen",
+    )
+
+    jsb_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "joint_state_broadcaster",
+            "--controller-manager",
+            "controller_manager",
+        ],
+        output="screen",
+    )
+
+    hande_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "hande_controller",
+            "--controller-manager",
+            "controller_manager",
         ],
         output="screen",
     )
@@ -83,5 +110,7 @@ def generate_launch_description():
             clock_bridge,
             rsp,
             spawn,
+            jsb_spawner,
+            hande_spawner,
         ]
     )

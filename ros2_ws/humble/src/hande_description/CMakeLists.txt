@@ -8,6 +8,8 @@ install(DIRECTORY
   meshes
   urdf
   rviz
+  ros2_control
+  gazebo
   DESTINATION share/${PROJECT_NAME}/
 )
 

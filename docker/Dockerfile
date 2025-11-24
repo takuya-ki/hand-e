@@ -44,6 +44,7 @@ RUN apt update -y && apt install -y --no-install-recommends \
     ros-humble-ros-gz-sim \
     ros-humble-ros-gz-bridge \
     ros-humble-ros-gz-image \
+    ros-humble-gz-ros2-control \
     python3-colcon-common-extensions \
     python3-rosdep \
     && rm -rf /var/lib/apt/lists/* \

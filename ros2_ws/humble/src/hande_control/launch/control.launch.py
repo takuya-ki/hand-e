@@ -45,7 +45,6 @@ def generate_launch_description():
                         "robot_description": robot_desc,
                     }
                 ],
-                remappings=[("/joint_states", "/hande/joint_states")],
             ),
 
             # ros2_control_node (FakeSystem or ros2_control hardware)

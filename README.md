@@ -81,6 +81,8 @@ ros2 launch hande_control control.launch.py
 ##### Run the gazebo simulator
 ```bash
 ros2 launch hande_gazebo gazebo.launch.py
+ros2 topic pub --once /hande_controller/commands std_msgs/msg/Float64MultiArray "{data: [0.0, 0.0]}"  # open
+ros2 topic pub --once /hande_controller/commands std_msgs/msg/Float64MultiArray "{data: [0.025, 0.025]}"  # close
 ```
 <img src="images/gazebo.png" height="400">  
 
