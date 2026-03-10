@@ -2,8 +2,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="hande_system_interface" params="robot_name mode">
 
-    <xacro:property name="hande_control_share" value="$(find hande_control)" />
-
     <ros2_control name="${robot_name}_system_interface" type="system">
 
       <xacro:if value="${mode == 'gazebo'}">

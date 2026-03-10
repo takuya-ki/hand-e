@@ -16,7 +16,7 @@ def generate_launch_description():
 
     hande_description_share = get_package_share_directory("hande_description")
     xacro_file = os.path.join(hande_description_share, "urdf", "hande.urdf.xacro")
-    doc = xacro.process_file(xacro_file, mappings={"use_gazebo": "false"})
+    doc = xacro.process_file(xacro_file, mappings={"mode": "mock"})
     robot_desc = doc.toxml()
 
     # hande_control の controllers yaml

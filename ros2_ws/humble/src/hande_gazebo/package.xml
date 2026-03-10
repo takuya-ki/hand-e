@@ -9,16 +9,13 @@
 
     <!-- Package runtime and build dependencies -->
     <depend>rclpy</depend>
-    <depend>std_msgs</depend>
-    <depend>std_srvs</depend>
-    <depend>geometry_msgs</depend>
-    <depend>tf2_ros</depend>
     <depend>launch</depend>
     <depend>launch_ros</depend>
     <depend>controller_manager</depend>
     <depend>joint_state_broadcaster</depend>
-    <depend>gazebo_ros</depend>
-    <depend>gazebo_ros2_control</depend>
+    <depend>ros_gz_sim</depend>
+    <depend>ros_gz_bridge</depend>
+    <depend>gz_ros2_control</depend>
     <exec_depend>hande_description</exec_depend>
     <exec_depend>hande_control</exec_depend>
 

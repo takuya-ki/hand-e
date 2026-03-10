@@ -34,7 +34,7 @@ class CloseOpenDemonstrator(Node):
             self.driver.move(pos=int(pos_val_real), speed=64, force=1)
 
         pos_val_sim = pos_val * 0.025
-        self.get_logger().info("Current position value (pos_val): " + str(pos_val_sim))
+        self.get_logger().info("Current position value (sim): " + str(pos_val_sim))
         joint_state = JointState()
 
         try:

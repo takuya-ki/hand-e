@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import time
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
@@ -69,6 +68,8 @@ class HandeServer(Node):
         except KeyboardInterrupt:
             pass
 
+        response.success = True
+        response.message = "Command '{}' executed.".format(request.command)
         return response
 
     def genCommand(self, command):
@@ -79,7 +80,7 @@ class HandeServer(Node):
         elif command == 'o':  # open
             self.pos_val = 0.0
         else:
-            # assuming that the command is within the range of 0.0 to 0.1
+            # assuming that the command is within the range of 0.0 to 1.0
             try: 
                 self.pos_val = float(command)
                 if self.pos_val > 1.0:
